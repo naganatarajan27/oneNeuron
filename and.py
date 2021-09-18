@@ -11,7 +11,7 @@ def main(data,eta,epochs,modelName,plotName):
     model.fit(X,y)
     _ = model.total_loss()
     save_model(model,filename=modelName)
-    save_plot(df,filename=plotName,model=model)
+    save_plot(df,plotName,model=model)
 
 if __name__ == '__main__':
     AND = {
