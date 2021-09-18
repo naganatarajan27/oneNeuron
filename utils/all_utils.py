@@ -4,6 +4,10 @@ import pandas as pd
 import joblib # FOR SAVING MY MODEL AS A BINARY FILE
 from matplotlib.colors import ListedColormap
 import os
+import logging
+
+logging_str = "[%(asctime)s: %(levelname)s: %(module)s] %(message)s"
+logging.basicConfig(level=logging.INFO, format=logging_str)
 
 plt.style.use("fivethirtyeight") # THIS IS STYLE
 
@@ -15,6 +19,7 @@ def prepare_data(df):
   Returns:
       tuple: it return the tuples of dependent variables and independent variables
   """
+  logging.info("Preparing the data by segregating the dependent variables")
   X=df.drop("y", axis=1)
   y=df["y"]
   return X , y 
@@ -26,6 +31,7 @@ def save_model(model, filename):
       model (python object): trained model
       filename (string): file name to save the trained model
   """
+  logging.info("Saved the trained model at {0}".format(filename))
   model_dir = "models"
   os.makedirs(model_dir,exist_ok=True) # ONLY CREATE IF MODEL_DIR DOESN'T EXIST
   filepath=os.path.join(model_dir,filename) # model/filename
