@@ -32,7 +32,7 @@ def save_model(model, filename):
   joblib.dump(model,filepath)
 
 def save_plot(df,file_name,model):
-  
+
   """It is used to save the plot based on the trained model
 
     Args:
@@ -42,6 +42,12 @@ def save_plot(df,file_name,model):
     """
 
   def _create_base_plot(df):
+    """It is used to create the plot graph
+
+    Args:
+        df (pd DataFrame): its the Pandas DataFrame
+    """
+
     df.plot(kind = "scatter", x="x1", y="x2", c="y", s=100, cmap="winter")
     plt.axhline(y=0,color="black",linestyle="--",linewidth=1)
     plt.axvline(x=0,color="black",linestyle="--",linewidth=1)
@@ -49,6 +55,14 @@ def save_plot(df,file_name,model):
     figure.set_size_inches(10,8)
 
   def _plot_decission_regions(X, y, classfier, resolution = 0.02):
+    """It is used to create the plot based on the trained model Data
+
+    Args:
+        X (int array): [pd Dataframe 1st Object]
+        y (int array): [pd Dataframe 2nd Object]
+        classfier (python Object): Trained Model
+        resolution (float, optional): The plot image Resolution. Defaults to 0.02.
+    """
     colors = ("red", "blue", "lightgreen", "gray", "cyan")
     cmap = ListedColormap(colors [:len(np.unique(y))])
 
